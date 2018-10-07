@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controller.MainActivity">
+
+    <!-- LinearLayout not used for overlap element put FrameLayout use for it -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/launcherHomeScreen">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:background="@drawable/ic_launcher_background"
+            android:id="@+id/launcherHomeScreenWallpaper"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/draggedAppNotifyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimary"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/appDraggedLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="App Name"
+                    android:textColor="@android:color/white"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/appDraggedCancelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="unSelectAppClicked"
+                    android:scaleType="fitXY"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:text="Cancel"
+                    android:textColor="@android:color/white"
+                    android:textStyle="italic"
+                    android:tint="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/appDraggedDeleteBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="deleteSelectedAppClicked"
+                    android:scaleType="fitXY"
+                    android:text="Delete"
+                    android:textColor="@android:color/white"
+                    android:tint="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/appDraggedCancelBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_delete" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/bottomSheet"
+        style="@style/Widget.Design.BottomSheet.Modal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="60dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <include layout="@layout/drawer_layout" />
+
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>
